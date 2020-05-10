@@ -14,7 +14,7 @@ function SEO({ title }) {
           siteMetadata {
             title
             description
-            url
+            siteUrl
             twitter
           }
         }
@@ -24,7 +24,7 @@ function SEO({ title }) {
       }
     `
   )
-  const image = `${siteMetadata.url}${publicURL}`
+  const image = `${siteMetadata.siteUrl}${publicURL}`
 
   return (
     <Helmet
@@ -36,7 +36,7 @@ function SEO({ title }) {
       <meta name="description" content={siteMetadata.description} />
       <meta name="image" content={image} />
 
-      <meta property="og:url" content={siteMetadata.url} />
+      <meta property="og:url" content={siteMetadata.siteUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={siteMetadata.title} />
       <meta property="og:description" content={siteMetadata.description} />

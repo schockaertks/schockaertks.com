@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Kristof Schockaert - JavaScript Developer and Consultant`,
+    title: `Kristof Schockaert - Freelance JavaScript Developer and Consultant`,
     description: `Hey! I’m Kristof Schockaert, an experienced JavaScript developer and consultant passionate about providing solutions to business problems.`,
     author: `Kristof Schockaert`,
     twitter: `@schockaertks`,
-    url: `https://schockaertks.com`,
+    siteUrl: `https://schockaertks.com`,
     links: {
       github: `https://github.com/schockaertks`,
       twitter: `https://twitter.com/schockaertks`,
@@ -15,6 +15,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet-async`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
@@ -22,6 +23,45 @@ module.exports = {
       options: {
         name: `assets`,
         path: `${__dirname}/src/assets/`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage {
+            edges {
+              node {
+                path
+              }
+            }
+          }
+          file(name: { eq: "Resume-Kristof-Schockaert" }) {
+            publicURL
+          }
+        }`,
+        serialize: ({ site, allSitePage, file }) => {
+          const pages = []
+          allSitePage.edges.map(edge => {
+            pages.push({
+              url: `${site.siteMetadata.siteUrl}${edge.node.path}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            })
+          })
+          pages.push({
+            url: `${site.siteMetadata.siteUrl}${file.publicURL}`,
+            changefreq: `daily`,
+            priority: 0.7,
+          })
+          return pages
+        },
       },
     },
     {
