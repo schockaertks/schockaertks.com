@@ -47,9 +47,8 @@ module.exports = {
           }
         }`,
         serialize: ({ site, allSitePage, file }) => {
-          const pages = []
-          allSitePage.edges.map(edge => {
-            pages.push({
+          const pages = allSitePage.edges.map(edge => {
+            return ({
               url: `${site.siteMetadata.siteUrl}${edge.node.path}`,
               changefreq: `daily`,
               priority: 0.7,
