@@ -1,0 +1,54 @@
+---
+const groups = [
+  {
+    title: "Pro-code",
+    tags: ["TypeScript", "JavaScript", "React", "C#", "Node.js", "Python", "Swift", "Go"],
+  },
+  {
+    title: "Microsoft",
+    tags: [
+      "D365 Sales",
+      "D365 Marketing",
+      "D365 Customer Service",
+      "D365 Field Service",
+      "Model-driven apps",
+      "Canvas apps",
+      "Power Pages",
+      "Power Automate",
+      "Dataverse",
+      "Copilot Studio",
+      "XrmToolBox",
+      "SharePoint",
+    ],
+  },
+  {
+    title: "AI-native delivery",
+    tags: ["Claude Code", "OpenAI Codex", "Microsoft Copilot"],
+  },
+  {
+    title: "Platform & ALM",
+    tags: ["Azure DevOps", "Git", "Docker", "PostgreSQL", "REST APIs", "Postman"],
+  },
+];
+---
+
+<section id="toolbox">
+  <div class="wrap">
+    <span class="eyebrow">Toolbox</span>
+    <h2>What I work with</h2>
+    <div class="tool-groups">
+      {groups.map((group) => (
+        <div class="tg">
+          <h3>{group.title}</h3>
+          <div class="tg-tags">{group.tags.map((tag) => <span>{tag}</span>)}</div>
+        </div>
+      ))}
+    </div>
+    <div class="certs">
+      <div class="cert now">PL-900 Power Platform Fundamentals<em>Microsoft · certified</em></div>
+      <div class="cert">AB-410 Intelligent Applications Builder<em>Microsoft · in preparation</em></div>
+      <div class="cert">PL-400 Power Platform Developer<em>Microsoft · in preparation</em></div>
+    </div>
+  </div>
+</section>
+

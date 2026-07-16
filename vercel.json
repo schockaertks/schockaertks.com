@@ -1,0 +1,53 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/about",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/resume",
+      "destination": "/cv",
+      "permanent": true
+    },
+    {
+      "source": "/resume/",
+      "destination": "/cv",
+      "permanent": true
+    },
+    {
+      "source": "/Resume-Kristof-Schockaert.pdf",
+      "destination": "/cv",
+      "permanent": true
+    },
+    {
+      "source": "/static/122ff1b67484ea2bb3889911c2ad5886/Resume-Kristof-Schockaert.pdf",
+      "destination": "/cv",
+      "permanent": true
+    },
+    {
+      "source": "/cv",
+      "destination": "/cv/Kristof-Schockaert-CV.pdf",
+      "permanent": false
+    }
+  ]
+}
+

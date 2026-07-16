@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import HowIWork from "../components/HowIWork.astro";
+import Experience from "../components/Experience.astro";
+import Toolbox from "../components/Toolbox.astro";
+import Contact from "../components/Contact.astro";
+
+const title = "Kristof Schockaert | Power Platform & Dynamics 365 Consultant";
+const description =
+  "Freelance Power Platform and Dynamics 365 technical consultant in Belgium. Power Apps, Dataverse, Power Automate, plug-ins, PCF and integrations.";
+---
+
+<BaseLayout title={title} description={description}>
+  <main>
+    <Hero />
+    <Services />
+    <HowIWork />
+    <Experience />
+    <Toolbox />
+    <Contact />
+  </main>
+</BaseLayout>
+

@@ -1,0 +1,134 @@
+---
+import ThemeToggle from "../components/ThemeToggle.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        var savedTheme;
+
+        try {
+          savedTheme = localStorage.getItem("theme");
+        } catch (error) {}
+
+        function applyTheme(theme, persist) {
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+          window.__theme = theme;
+
+          if (persist) {
+            try {
+              localStorage.setItem("theme", theme);
+            } catch (error) {}
+          }
+
+          document.dispatchEvent(
+            new CustomEvent("themechange", { detail: { theme: theme } }),
+          );
+        }
+
+        window.__setTheme = function (theme) {
+          if (theme === "light" || theme === "dark") applyTheme(theme, true);
+        };
+
+        function followSystemPreference(event) {
+          var stored;
+          try {
+            stored = localStorage.getItem("theme");
+          } catch (error) {}
+          if (stored !== "light" && stored !== "dark") {
+            applyTheme(event.matches ? "dark" : "light", false);
+          }
+        }
+
+        if (darkQuery.addEventListener) {
+          darkQuery.addEventListener("change", followSystemPreference);
+        } else {
+          darkQuery.addListener(followSystemPreference);
+        }
+
+        applyTheme(
+          savedTheme === "light" || savedTheme === "dark"
+            ? savedTheme
+            : darkQuery.matches
+              ? "dark"
+              : "light",
+          false,
+        );
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://schockaertks.com/Kristof-Schockaert.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://schockaertks.com/Kristof-Schockaert.jpeg" />
+    <noscript><style>.reveal{opacity:1!important;transform:none!important}.theme-toggle{display:none!important}</style></noscript>
+  </head>
+  <body>
+    <svg width="0" height="0" class="icon-sprite" aria-hidden="true">
+      <defs>
+        <symbol id="i-node" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 21 8l-9 5-9-5 9-5z"></path><path d="M3 13l9 5 9-5"></path></symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"></rect><rect x="13" y="4" width="7" height="7" rx="1.5"></rect><rect x="4" y="13" width="7" height="7" rx="1.5"></rect><rect x="13" y="13" width="7" height="7" rx="1.5"></rect></symbol>
+        <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5"></path><path d="M6 8h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8z"></path><path d="M12 17v4"></path></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M3.5 7.5 12 13l8.5-5.5"></path></symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"></path><path d="M14 3v4h4"></path><path d="M10 12h5M10 16h5"></path></symbol>
+        <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1.5 1.5"></path><path d="M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6L12.5 17.5"></path></symbol>
+      </defs>
+    </svg>
+
+    <nav>
+      <div class="wrap nav-inner">
+        <a class="logo" href="/">Kristof <span>Schockaert</span></a>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#experience">Experience</a>
+          <a href="#toolbox">Toolbox</a>
+          <ThemeToggle />
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("in");
+          }),
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((element) => observer.observe(element));
+    </script>
+  </body>
+</html>
+
