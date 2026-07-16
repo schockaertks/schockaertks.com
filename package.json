@@ -2,7 +2,34 @@
   "name": "schockaertks.com",
   "version": "1.0.0",
   "private": true,
+  "description": "Personal website for Kristof Schockaert, a freelance Power Platform and Dynamics 365 technical consultant and AI-native developer.",
+  "author": {
+    "name": "Kristof Schockaert",
+    "email": "schockaertks@gmail.com",
+    "url": "https://schockaertks.com"
+  },
+  "license": "UNLICENSED",
   "type": "module",
+  "homepage": "https://schockaertks.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schockaertks/schockaertks.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/schockaertks/schockaertks.com/issues"
+  },
+  "keywords": [
+    "astro",
+    "dynamics-365",
+    "portfolio",
+    "power-platform",
+    "technical-consulting"
+  ],
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
+  },
+  "packageManager": "npm@11.9.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -18,4 +45,3 @@
     "tailwindcss": "^4.3.3"
   }
 }
-
