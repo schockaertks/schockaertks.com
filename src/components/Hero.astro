@@ -1,0 +1,96 @@
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Freelance Power Platform &amp; Dynamics 365 Technical Consultant · AI-Native Developer</span>
+      <h1><span class="lo">Low-code</span> where it's fast.<br /><span class="pro">Pro-code</span> where it counts.</h1>
+      <p>I'm Kristof Schockaert, a freelance Power Platform &amp; Dynamics 365 technical consultant and AI-native developer with a hands-on software development background — pro-code depth in plug-ins, PCF components, Web APIs and custom connectors, grounded in project experience across Dynamics 365 Sales, Marketing, Customer Service and Field Service.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:schockaertks@gmail.com"><svg class="ic"><use href="#i-mail"></use></svg>Email</a>
+        <a class="btn btn-ghost" href="/cv"><svg class="ic"><use href="#i-doc"></use></svg>Download CV</a>
+      </div>
+      <div class="quiet-links">
+        <a href="https://github.com/schockaertks"><svg class="ic"><use href="#i-link"></use></svg>GitHub</a>
+        <a href="https://x.com/schockaertks"><svg class="ic"><use href="#i-link"></use></svg>Twitter</a>
+        <a href="https://www.linkedin.com/in/schockaertks/"><svg class="ic"><use href="#i-link"></use></svg>LinkedIn</a>
+      </div>
+      <div class="chips">
+        <span class="chip hot">Freelance — available</span>
+        <span class="chip">PL-900 certified</span>
+        <span class="chip">AB-410 &amp; PL-400 in preparation</span>
+        <span class="chip">NL native · EN fluent</span>
+      </div>
+    </div>
+
+    <div class="stack-zone">
+      <div class="stack" id="stack" data-active="photo" aria-label="Choose low-code or pro-code to see how I work">
+        <button class="layer l1" type="button" data-layer="pro" aria-pressed="false">
+          <span class="layer-label">PRO-CODE</span>
+          <span class="layer-content">
+            <strong>I ship code</strong>
+            <span>C# plug-ins, TypeScript PCF, Web APIs and React front ends when the platform reaches its limit — without a hand-off gap.</span>
+            <span class="layer-action">Select again to close</span>
+          </span>
+        </button>
+        <button class="layer l2" type="button" data-layer="low" aria-pressed="false">
+          <span class="layer-label">LOW-CODE</span>
+          <span class="layer-content">
+            <strong>I build with the platform</strong>
+            <span>Model-driven and canvas apps, Power Automate, Power Pages and Dataverse first — faster delivery and easier handover.</span>
+            <span class="layer-action">Select again to close</span>
+          </span>
+        </button>
+        <div class="photo"><img src="/Kristof-Schockaert.jpeg" alt="Kristof Schockaert" /></div>
+      </div>
+      <em class="stack-hint">— select a card —</em>
+    </div>
+  </div>
+</header>
+
+<script>
+  const zone = document.querySelector<HTMLElement>(".stack-zone");
+  const stack = document.querySelector<HTMLElement>("#stack");
+  const layerButtons = [
+    ...document.querySelectorAll<HTMLButtonElement>("[data-layer]"),
+  ];
+
+  layerButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      if (!stack || !zone) return;
+      const selected = button.dataset.layer ?? "photo";
+      const next = stack.dataset.active === selected ? "photo" : selected;
+      stack.dataset.active = next;
+      layerButtons.forEach((item) =>
+        item.setAttribute(
+          "aria-pressed",
+          String(item.dataset.layer === next),
+        ),
+      );
+      zone.classList.add("touched");
+      stack.style.transform = "";
+      stack.classList.remove("tilting");
+    }),
+  );
+
+  const fine = matchMedia("(pointer:fine)").matches;
+  const motionOK = matchMedia(
+    "(prefers-reduced-motion:no-preference)",
+  ).matches;
+
+  if (zone && stack && fine && motionOK) {
+    zone.addEventListener("mousemove", (event) => {
+      if (stack.dataset.active !== "photo") return;
+      const rect = stack.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      stack.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 8}deg)`;
+      stack.classList.add("tilting");
+      zone.classList.add("touched");
+    });
+
+    zone.addEventListener("mouseleave", () => {
+      stack.style.transform = "";
+      stack.classList.remove("tilting");
+    });
+  }
+</script>
+

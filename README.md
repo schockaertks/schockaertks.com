@@ -1,6 +1,20 @@
-# Kristof Schockaert
-## JavaScript Developer and Consultant
+# schockaertks.com
 
-Hey! I’m Kristof Schockaert, an experienced JavaScript developer and consultant passionate about providing solutions to business problems.
+Personal website for Kristof Schockaert, built as a static Astro site and deployed on Vercel.
 
-Visit [schockaertks.com](https://schockaertks.com "schockaertks.com") for more info.
+## Development
+
+```sh
+npm install
+npm run dev
+```
+
+## Production build
+
+```sh
+npm run build
+npm run preview
+```
+
+The public CV URL is `/cv`. Versioned source documents remain local under the ignored `docs/` directory.
+

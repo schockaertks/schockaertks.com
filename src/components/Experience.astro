@@ -1,0 +1,81 @@
+---
+const experiences = [
+  {
+    when: "NOW · Independent",
+    title: "Freelance Power Platform & Dynamics 365 practice",
+    copy: "Full-time deep dive into the Microsoft stack: building my own low-code and pro-code projects — model-driven and canvas apps, flows, Dataverse plug-ins (C#), PCF components (TypeScript), Web API and custom connectors — while preparing the AB-410 and PL-400 certifications.",
+    tags: ["AB-410 · prep", "PL-400 · prep", "Plug-ins", "PCF"],
+    trigger: true,
+  },
+  {
+    when: "2026 · Founder & developer",
+    title: "Parliq — voice AI startup",
+    copy: "Designed, built and pitched a working voice AI product solo: native Swift apps, Go and C# backends, React front end, PostgreSQL and Groq voice APIs. Pitched at Start it @KBC, then used the validation data to make a clear-headed stop decision. Shipped end to end; decided with data.",
+    tags: ["Swift", "Go", "C#", "React", "Groq"],
+  },
+  {
+    when: "2021–2025 · Lava Care4Growing · freelance via Inetum-Realdolmen",
+    title: "Salesforce technical consultant",
+    copy: "Four years of enterprise CRM pro-code delivery: Lightning Web Components, Apex and test classes, reusable Google Maps components with JSTS polygon splitting and area calculation, and workflow improvements like spraying schedules and task management. Salesforce Certified Administrator and JavaScript Developer I.",
+    tags: ["LWC", "Apex", "Maps API", "JSTS", "Azure DevOps"],
+  },
+  {
+    when: "2021 · Microsoft Europe Events (EUGA) · freelance via Inetum-Realdolmen",
+    title: "Dynamics 365 Marketing consultant",
+    copy: "Part of the team behind targeted, segmented marketing communications and event management, contributing Power Automate flows for event and communication processes.",
+    tags: ["D365 Marketing", "Power Automate"],
+  },
+  {
+    when: "2021 · UCB · freelance via Inetum-Realdolmen",
+    title: "Dynamics 365 Customer Service consultant",
+    copy: "QA interaction management with global suppliers and distributors: Power Apps Portal with custom JavaScript logic, Power Automate flows, plus training and documentation — in a landscape integrated with SAP (TIBCO) and Veeva Vault.",
+    tags: ["D365 CS", "Portal", "JavaScript"],
+  },
+  {
+    when: "2020 · Agidens · freelance via Inetum-Realdolmen",
+    title: "Dynamics 365 Field Service consultant",
+    copy: "Field Service transformation with AX contract/asset integration; built a customer and contact-center portal with custom design and JavaScript, Bing Maps case visibility and routing, service-report output and on-call duty integration.",
+    tags: ["D365 Field Service", "Portal", "Power Automate"],
+  },
+  {
+    when: "2017–2019 · Xpertdoc Technologies · employee",
+    title: "Senior functional consultant",
+    copy: "Smart Flows document generation for Dynamics 365 Sales: datasets, Word templates and generation flows, customer template-design workshops online and onsite, proof-of-concept templates and large data imports and exports.",
+    tags: ["D365 Sales", "Smart Flows", "Workshops"],
+  },
+];
+---
+
+<section id="experience">
+  <div class="wrap">
+    <span class="eyebrow">Experience</span>
+    <h2>The flow so far</h2>
+    <p class="lede">From full-stack web development through Salesforce to Power Platform and Dynamics 365.</p>
+
+    <div class="flow-list">
+      {experiences.map((experience) => (
+        <article class:list={["node", "reveal", { trigger: experience.trigger }]}>
+          <div class="node-icon"><svg class="ic"><use href="#i-node"></use></svg></div>
+          <div class="node-body">
+            <span class="node-when">{experience.when}</span>
+            <h3>{experience.title}</h3>
+            <p>{experience.copy}</p>
+            <div class="node-tags">
+              {experience.tags.map((tag) => <span>{tag}</span>)}
+            </div>
+          </div>
+        </article>
+      ))}
+
+      <article class="node quiet reveal">
+        <div class="node-icon"><svg class="ic"><use href="#i-node"></use></svg></div>
+        <div class="node-body">
+          <span class="node-when">2007–2017</span>
+          <h3>The first ten years</h3>
+          <p>Full-stack web development, front-end, SEM and technical support at Sixtopus, Vanden Borre and Newell Brands DYMO.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
