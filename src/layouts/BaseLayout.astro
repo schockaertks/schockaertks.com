@@ -74,19 +74,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="author" content="Kristof Schockaert" />
+    <meta name="theme-color" content="#f4f6fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111722" media="(prefers-color-scheme: dark)" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kristof Schockaert" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content="https://schockaertks.com/Kristof-Schockaert.jpeg" />
+    <meta property="og:image:alt" content="Portrait of Kristof Schockaert" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://schockaertks.com/Kristof-Schockaert.jpeg" />
+    <meta name="twitter:image:alt" content="Portrait of Kristof Schockaert" />
     <noscript><style>.reveal{opacity:1!important;transform:none!important}.theme-toggle{display:none!important}</style></noscript>
   </head>
   <body>
@@ -131,4 +137,3 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </script>
   </body>
 </html>
-
