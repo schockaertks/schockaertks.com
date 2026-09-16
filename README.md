@@ -79,6 +79,21 @@ The `master` branch is connected directly to the `schockaertks-com` Vercel proje
 
 The canonical production URL is [https://schockaertks.com](https://schockaertks.com).
 
+### Legacy offline cache migration
+
+The previous Gatsby site installed an offline service worker at `/sw.js`.
+Keep `public/sw.js` deployed: browsers that last visited the Gatsby site need
+this replacement worker to unregister the old worker, delete its Gatsby caches,
+and reload open pages from the network. A missing worker file or a CDN cache
+purge cannot perform that browser-side cleanup.
+
+The shared layout also checks for an existing `/sw.js` registration and requests
+an update, including after a hard refresh. New visitors do not register a worker.
+The worker response uses `Cache-Control: no-store`; normal static assets retain
+Vercel's default caching. Theme preferences and unrelated caches are preserved.
+
+Run the migration lifecycle checks with `node --test tests/sw.test.mjs`.
+
 ## License
 
 Copyright © Kristof Schockaert. The source is published for operational transparency; no reuse license is granted.
